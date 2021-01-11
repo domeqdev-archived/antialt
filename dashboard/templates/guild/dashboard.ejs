@@ -1,0 +1,37 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+
+<div class="dashboard is-0-8">
+    <div class="dashboard-sidebar">
+        <div class="sidebar-selector">
+            <div class="sidebar-selected">
+                <div class="sidebar-guild-icon-container"></div> 
+                <div class="sidebar-text" style="font-size: 17px;">Select a Server<br>
+                    <small style="font-size: 9px;">If server is not displaying <a style="color: lightblue;" href="/invite" target="_blank">invite bot</a>.</small>
+                </div>
+            </div> 
+        </div> 
+        <div class="sidebar-body">
+            <% bot.guilds.cache.forEach(guild => {
+                    if(!guild.members.cache.get(user.id)) return;
+                    if(!guild.members.cache.get(user.id).hasPermission("MANAGE_GUILD")) return;
+              %>
+            <div class="sidebar-item-row">
+                <a href="/dashboard/<%- guild.id %>" class="sidebar-item">
+                    <% if(!guild.icon) { %>
+                        <img width="30" height="30" class="rounded-circle" src="/public/df.png">
+                    <% } else { %>
+                        <img width="30" height="30" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` %>">
+                    <% } %>
+                    <span>&nbsp;&nbsp;<%= guild.name %></span>
+                </a> 
+            </div>
+            <% }); %>
+        </div>
+    </div> 
+    <div class="dashboard-body">
+        <div class="dashboard-components general-dashboard">
+            Hi. Please select server.
+        </div>
+    </div>
+</div>
+<%- include('../blocks/footer') %>

@@ -1,0 +1,60 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+
+<div class="dashboard is-0-8">
+  <div class="dashboard-sidebar">
+      <div class="sidebar-selector">
+          <div class="sidebar-selected">
+              <div class="sidebar-guild-icon-container">
+                <% if(!guild.icon) { %>
+                  <img width="30" height="30" class="rounded-circle" src="/public/df.png">
+                <% } else { %>
+                  <img width="30" height="30" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` %>">
+                <% } %>
+              </div> 
+              <div class="sidebar-text"><%- guild.name %></div>
+          </div> 
+      </div> 
+      <div class="sidebar-body">
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEzLDNWOUgyMVYzTTEzLDIxSDIxVjExSDEzTTMsMjFIMTFWMTVIM00zLDEzSDExVjNIM1YxM1oiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4=" class="sidebar-item-icon">
+              <span>Overview</span>
+          </a> 
+        </div>
+        <div class="sidebar-item-row"> 
+          <a href="/dashboard/<%- guild.id %>/antialt" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDEySDE5QzE4LjQ3LDE2LjExIDE1LjcyLDE5Ljc4IDEyLDIwLjkyVjEySDVWNi4zTDEyLDMuMTlNMTIsMUwzLDVWMTFDMywxNi41NSA2Ljg0LDIxLjczIDEyLDIzQzE3LjE2LDIxLjczIDIxLDE2LjU1IDIxLDExVjVMMTIsMVoiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4=" class="sidebar-item-icon"> 
+              <span>AntiAlt</span>
+          </a>
+        </div>
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>/captcha" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjYxMzMgOEMxMi42NCA4LjIyIDEyLjY2NjcgOC40NCAxMi42NjY3IDguNjY2NjdDMTIuNjY2NyAxMC4wNTMzIDEyLjEzMzMgMTEuMzEzMyAxMS4yNjY3IDEyLjI2QzExLjA5MzMgMTEuNzIgMTAuNiAxMS4zMzMzIDEwIDExLjMzMzNIOS4zMzMzM1Y5LjMzMzMzQzkuMzMzMzMgOC45NjY2NyA5LjAzMzMzIDguNjY2NjcgOC42NjY2NyA4LjY2NjY3SDQuNjY2NjdWNy4zMzMzM0g2QzYuMzY2NjcgNy4zMzMzMyA2LjY2NjY3IDcuMDMzMzMgNi42NjY2NyA2LjY2NjY3VjUuMzMzMzNIOEM4LjczMzMzIDUuMzMzMzMgOS4zMzMzMyA0LjczMzMzIDkuMzMzMzMgNFYyLjMwNjY3QzguNyAyLjEwNjY3IDguMDMzMzMgMiA3LjMzMzMzIDJDMy42NTMzMyAyIDAuNjY2NjY4IDQuOTg2NjcgMC42NjY2NjggOC42NjY2N0MwLjY2NjY2OCAxMi4zNDY3IDMuNjUzMzMgMTUuMzMzMyA3LjMzMzMzIDE1LjMzMzNDMTEuMDEzMyAxNS4zMzMzIDE0IDEyLjM0NjcgMTQgOC42NjY2N0MxNCA4LjQ0IDEzLjk4NjcgOC4yMiAxMy45NjY3IDhIMTIuNjEzM1pNNi42NjY2NyAxMy45NTMzQzQuMDMzMzMgMTMuNjI2NyAyIDExLjM4NjcgMiA4LjY2NjY3QzIgOC4yNTMzMyAyLjA1MzMzIDcuODYgMi4xNCA3LjQ3MzMzTDUuMzMzMzMgMTAuNjY2N1YxMS4zMzMzQzUuMzMzMzMgMTIuMDY2NyA1LjkzMzMzIDEyLjY2NjcgNi42NjY2NyAxMi42NjY3VjEzLjk1MzNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTQuNjY2NyAyLjY2NjVWMi4zMzMxN0MxNC42NjY3IDEuNDEzMTcgMTMuOTIgMC42NjY1MDQgMTMgMC42NjY1MDRDMTIuMDggMC42NjY1MDQgMTEuMzMzMyAxLjQxMzE3IDExLjMzMzMgMi4zMzMxN1YyLjY2NjVDMTAuOTY2NyAyLjY2NjUgMTAuNjY2NyAyLjk2NjUgMTAuNjY2NyAzLjMzMzE3VjUuOTk5ODRDMTAuNjY2NyA2LjM2NjUgMTAuOTY2NyA2LjY2NjUgMTEuMzMzMyA2LjY2NjVIMTQuNjY2N0MxNS4wMzMzIDYuNjY2NSAxNS4zMzMzIDYuMzY2NSAxNS4zMzMzIDUuOTk5ODRWMy4zMzMxN0MxNS4zMzMzIDIuOTY2NSAxNS4wMzMzIDIuNjY2NSAxNC42NjY3IDIuNjY2NVpNMTQgMi42NjY1SDEyVjIuMzMzMTdDMTIgMS43Nzk4NCAxMi40NDY3IDEuMzMzMTcgMTMgMS4zMzMxN0MxMy41NTMzIDEuMzMzMTcgMTQgMS43Nzk4NCAxNCAyLjMzMzE3VjIuNjY2NVoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=" class="sidebar-item-icon"> 
+              <span>Verification</span>
+          </a>
+        </div>
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>/vanity" class="sidebar-item active">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDE3LjI3TDE4LjE4LDIxTDE2LjU0LDEzLjk3TDIyLDkuMjRMMTQuODEsOC42MkwxMiwyTDkuMTksOC42MkwyLDkuMjRMNy40NSwxMy45N0w1LjgyLDIxTDEyLDE3LjI3WiIgZmlsbD0iI0ZGRkZGRiIvPjwvc3ZnPg==" class="sidebar-item-icon"> 
+              <span>Vanity Lnik</span>
+          </a> 
+        </div>
+    </div> 
+  </div>
+  <div class="dashboard-body">
+    <% if(!guild.me.hasPermission("ADMINISTRATOR")) { %>
+      <div class="dash-item dashboard-premium">
+        <div class="premium-text">
+          <span class="title">Missing Admin Permissions!</span><br>
+          <span class="subtitle">Bot can't work properly without admin permissions.</span>
+        </div>
+      </div>
+      <% } %>
+      <center><h1>⭐ Vanity Link</h1>
+      <img src="https://cdn.discordapp.com/emojis/702262803792134214.gif?v=1"></center>
+      <!-- -->
+      <!-- -->
+    </div>
+  </div>
+
+<%- include('../blocks/footer') %>

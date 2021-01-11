@@ -1,0 +1,219 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+<% if(bot.settings.get(guild.id + "c", "c_status") !== "on") {
+  var style="style= 'display: none;'"
+} %>
+<div class="dashboard is-0-8">
+  <div class="dashboard-sidebar">
+      <div class="sidebar-selector">
+          <div class="sidebar-selected">
+              <div class="sidebar-guild-icon-container">
+                <% if(!guild.icon) { %>
+                  <img width="30" height="30" class="rounded-circle" src="/public/df.png">
+                <% } else { %>
+                  <img width="30" height="30" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` %>">
+                <% } %>
+              </div> 
+              <div class="sidebar-text"><%- guild.name %></div>
+          </div> 
+      </div> 
+      <div class="sidebar-body">
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEzLDNWOUgyMVYzTTEzLDIxSDIxVjExSDEzTTMsMjFIMTFWMTVIM00zLDEzSDExVjNIM1YxM1oiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4=" class="sidebar-item-icon">
+              <span>Overview</span>
+          </a> 
+        </div>
+        <div class="sidebar-item-row"> 
+          <a href="/dashboard/<%- guild.id %>/antialt" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDEySDE5QzE4LjQ3LDE2LjExIDE1LjcyLDE5Ljc4IDEyLDIwLjkyVjEySDVWNi4zTDEyLDMuMTlNMTIsMUwzLDVWMTFDMywxNi41NSA2Ljg0LDIxLjczIDEyLDIzQzE3LjE2LDIxLjczIDIxLDE2LjU1IDIxLDExVjVMMTIsMVoiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4=" class="sidebar-item-icon"> 
+              <span>AntiAlt</span>
+          </a>
+        </div>
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>/captcha" class="sidebar-item active">
+              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjYxMzMgOEMxMi42NCA4LjIyIDEyLjY2NjcgOC40NCAxMi42NjY3IDguNjY2NjdDMTIuNjY2NyAxMC4wNTMzIDEyLjEzMzMgMTEuMzEzMyAxMS4yNjY3IDEyLjI2QzExLjA5MzMgMTEuNzIgMTAuNiAxMS4zMzMzIDEwIDExLjMzMzNIOS4zMzMzM1Y5LjMzMzMzQzkuMzMzMzMgOC45NjY2NyA5LjAzMzMzIDguNjY2NjcgOC42NjY2NyA4LjY2NjY3SDQuNjY2NjdWNy4zMzMzM0g2QzYuMzY2NjcgNy4zMzMzMyA2LjY2NjY3IDcuMDMzMzMgNi42NjY2NyA2LjY2NjY3VjUuMzMzMzNIOEM4LjczMzMzIDUuMzMzMzMgOS4zMzMzMyA0LjczMzMzIDkuMzMzMzMgNFYyLjMwNjY3QzguNyAyLjEwNjY3IDguMDMzMzMgMiA3LjMzMzMzIDJDMy42NTMzMyAyIDAuNjY2NjY4IDQuOTg2NjcgMC42NjY2NjggOC42NjY2N0MwLjY2NjY2OCAxMi4zNDY3IDMuNjUzMzMgMTUuMzMzMyA3LjMzMzMzIDE1LjMzMzNDMTEuMDEzMyAxNS4zMzMzIDE0IDEyLjM0NjcgMTQgOC42NjY2N0MxNCA4LjQ0IDEzLjk4NjcgOC4yMiAxMy45NjY3IDhIMTIuNjEzM1pNNi42NjY2NyAxMy45NTMzQzQuMDMzMzMgMTMuNjI2NyAyIDExLjM4NjcgMiA4LjY2NjY3QzIgOC4yNTMzMyAyLjA1MzMzIDcuODYgMi4xNCA3LjQ3MzMzTDUuMzMzMzMgMTAuNjY2N1YxMS4zMzMzQzUuMzMzMzMgMTIuMDY2NyA1LjkzMzMzIDEyLjY2NjcgNi42NjY2NyAxMi42NjY3VjEzLjk1MzNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTQuNjY2NyAyLjY2NjVWMi4zMzMxN0MxNC42NjY3IDEuNDEzMTcgMTMuOTIgMC42NjY1MDQgMTMgMC42NjY1MDRDMTIuMDggMC42NjY1MDQgMTEuMzMzMyAxLjQxMzE3IDExLjMzMzMgMi4zMzMxN1YyLjY2NjVDMTAuOTY2NyAyLjY2NjUgMTAuNjY2NyAyLjk2NjUgMTAuNjY2NyAzLjMzMzE3VjUuOTk5ODRDMTAuNjY2NyA2LjM2NjUgMTAuOTY2NyA2LjY2NjUgMTEuMzMzMyA2LjY2NjVIMTQuNjY2N0MxNS4wMzMzIDYuNjY2NSAxNS4zMzMzIDYuMzY2NSAxNS4zMzMzIDUuOTk5ODRWMy4zMzMxN0MxNS4zMzMzIDIuOTY2NSAxNS4wMzMzIDIuNjY2NSAxNC42NjY3IDIuNjY2NVpNMTQgMi42NjY1SDEyVjIuMzMzMTdDMTIgMS43Nzk4NCAxMi40NDY3IDEuMzMzMTcgMTMgMS4zMzMxN0MxMy41NTMzIDEuMzMzMTcgMTQgMS43Nzk4NCAxNCAyLjMzMzE3VjIuNjY2NVoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=" class="sidebar-item-icon"> 
+              <span>Verification</span>
+          </a>
+        </div>
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>/vanity" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDE3LjI3TDE4LjE4LDIxTDE2LjU0LDEzLjk3TDIyLDkuMjRMMTQuODEsOC42MkwxMiwyTDkuMTksOC42MkwyLDkuMjRMNy40NSwxMy45N0w1LjgyLDIxTDEyLDE3LjI3WiIgZmlsbD0iI0ZGRkZGRiIvPjwvc3ZnPg==" class="sidebar-item-icon"> 
+              <span>Vanity Link</span>
+          </a> 
+        </div>
+    </div> 
+  </div>
+  <div class="dashboard-body">
+    <% if(!guild.me.hasPermission("ADMINISTRATOR")) { %>
+      <div class="dash-item dashboard-premium">
+        <div class="premium-text">
+          <span class="title">Missing Admin Permissions!</span><br>
+          <span class="subtitle">Bot can't work properly without admin permissions.</span>
+        </div>
+      </div>
+      <% } %>
+      <center><h1>✅ Verification</h1></center>
+            <!-- -->
+            <div class="dashboard-components">
+              <div class="dashboard-component">
+                <div class="dashboard-content"> 
+                  <div class="dash-item">
+                      <span class="title">Status</span> 
+                      <div class="flex">
+                          <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="c_status" name="c_status">
+                            <option <% if(bot.settings.get(guild.id + "c", "c_status") === "off") { %>selected<% } %> value="off">❌ Disabled</option>
+                            <option <% if(bot.settings.get(guild.id + "c", "c_status") === "on") { %>selected<% } %> value="on">✅ Enabled</option>
+                          </select>
+                      </div>
+                    </div>
+                    <div <%- style %> class="dash-item">
+                      <span class="title">Server Rules (Optional)</span>
+                      <div class="flex">
+                        <textarea id="c_rules"><%- bot.settings.get(guild.id + "c", "c_rules") %></textarea>  
+                      </div>
+                    </div>
+                    <div <%- style %> class="dash-item">
+                      <span class="title">Verified Role</span>
+                      <div class="flex">
+                        <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="c_vrole" name="c_vrole">
+                          <option>-</option>
+                          <% guild.roles.cache.forEach(role => { 
+                              if(role.name === "@everyone") return; 
+                              if(guild.me.roles.highest.position <= role.position) return; %>
+                          <option <% if(bot.settings.get(guild.id + "c", "c_vrole") === role.id) { %>selected<% } %> value="<%- role.id %>"><%- role.name %></option><% }); %>
+                        </select>
+                      </div>
+                    </div>
+                    <div <%- style %> class="dash-item">
+                      <span class="title">In-Verify Role</span>
+                      <div class="flex">
+                        <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="c_arole" name="c_arole">
+                          <option>-</option>
+                          <% guild.roles.cache.forEach(role => { 
+                              if(role.name === "@everyone") return; 
+                              if(guild.me.roles.highest.position <= role.position) return; %>
+                          <option <% if(bot.settings.get(guild.id + "c", "c_arole") === role.id) { %>selected<% } %> value="<%- role.id %>"><%- role.name %></option><% }); %>
+                        </select>
+                      </div>
+                    </div>
+                    <div <%- style %> class="dash-item">
+                      <span class="title">Information message <a onclick='$(".notifi").html(`<div class="vue-notification-template vue-notification info"><div class="notification-title">Information Message</div> <div class="notification-content">In this channel bot will send link to verification if user has disabled dms.</div></div>`) && rm(5000, false)'><b>❓ INFO</b></a></span>
+                      <div class="flex">
+                        <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="kokaina" name="kokaina">
+                          <option>-</option>
+                          <% guild.channels.cache.forEach(role => { 
+                              if(role.type !== "text" && role.type !== "news") return; 
+                              role.name = role.name.replace("-", " ")
+                              let znak;
+                              if(role.type === "text") znak = "#️⃣"
+                              if(role.type === "news") znak = "📣"
+                              %>
+                          <option value="<%- role.id %>"><%- znak + " " + role.name %></option><% }); %>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div id="send" class="button">
+                          Send
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="one-button dash-item">
+                  <div id="save" class="button">
+                    Update
+                  </div>
+                </div>
+          <!---->
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script >
+  // don't try edit this script. 
+  // You can't change other server settings, because we're no idiots ;)
+  $(document).ready(() => {
+    $('#send').click(async () => {
+      const kokaina = $('#kokaina').val()
+      if(kokaina === "-") return $('.notifi').html(`
+          <div class="vue-notification-template vue-notification error">
+            <div class="notification-title">Error</div> 
+            <div class="notification-content">Please select channel.</div>
+          </div>
+          `) && rm(2000);
+      
+          try {
+              const res = await axios({
+                  url: "/dashboard/<%- guild.id %>/message",
+                  data: { channel: kokaina },
+                  method: "POST"
+              }).then(
+
+                $('.notifi').html(`
+          <div class="vue-notification-template vue-notification success">
+            <div class="notification-title">Success</div> 
+            <div class="notification-content">Message sent!</div>
+          </div>
+          `) && rm(1000, false)
+
+          )
+          } catch(err) {
+            $('.notifi').html(`
+          <div class="vue-notification-template vue-notification error">
+            <div class="notification-title">Error</div> 
+            <div class="notification-content">${err.message}</div>
+          </div>
+          `) 
+          }
+
+    })
+      $('#save').click(async () => {
+          const c_arole = $('#c_arole').val()
+          const c_vrole = $("#c_vrole").val()
+          const c_status = $("#c_status").val()
+          const c_rules = $("#c_rules").val()
+
+          if(!c_arole || !c_vrole || !c_status) return $('.notifi').html(`
+          <div class="vue-notification-template vue-notification error">
+            <div class="notification-title">Error</div> 
+            <div class="notification-content">I can't save server settings. Try refresh page.</div>
+          </div>
+          `) && rm(1000, true);
+
+          try {
+              const res = await axios({
+                  url: "/dashboard/<%- guild.id %>/captcha",
+                  data: {
+                      c_arole,
+                      c_vrole,
+                      c_status,
+                      c_rules
+                  },
+                  method: "POST"
+              }).then(
+
+                $('.notifi').html(`
+          <div class="vue-notification-template vue-notification success">
+            <div class="notification-title">Success</div> 
+            <div class="notification-content">Settings saved!</div>
+          </div>
+          `) && rm(1000, true)
+
+          )
+          } catch(err) {
+            $('.notifi').html(`
+          <div class="vue-notification-template vue-notification error">
+            <div class="notification-title">Error</div> 
+            <div class="notification-content">${err.message}</div>
+          </div>
+          `) 
+          }
+      })
+  })
+  function rm(seconds, reload) {
+    setTimeout(() => {
+      if(reload) location.reload();
+      if(!reload) $('.notifi').html(` `) 
+    }, seconds)
+  }
+</script>
+
+<%- include('../blocks/footer') %>

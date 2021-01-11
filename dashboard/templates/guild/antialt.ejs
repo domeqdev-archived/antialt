@@ -1,0 +1,204 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+<% if(bot.settings.get(guild.id, "status") !== "on") {
+  var style="style= 'display: none;'"
+} %>
+<div class="dashboard is-0-8">
+  <div class="dashboard-sidebar">
+      <div class="sidebar-selector">
+          <div class="sidebar-selected">
+              <div class="sidebar-guild-icon-container">
+                <% if(!guild.icon) { %>
+                  <img width="30" height="30" class="rounded-circle" src="/public/df.png">
+                <% } else { %>
+                  <img width="30" height="30" class="rounded-circle" src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` %>">
+                <% } %>
+              </div> 
+              <div class="sidebar-text"><%- guild.name %></div>
+          </div> 
+      </div> 
+      <div class="sidebar-body">
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEzLDNWOUgyMVYzTTEzLDIxSDIxVjExSDEzTTMsMjFIMTFWMTVIM00zLDEzSDExVjNIM1YxM1oiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4=" class="sidebar-item-icon">
+              <span>Overview</span>
+          </a> 
+        </div>
+        <div class="sidebar-item-row"> 
+          <a href="/dashboard/<%- guild.id %>/antialt" class="sidebar-item active">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDEySDE5QzE4LjQ3LDE2LjExIDE1LjcyLDE5Ljc4IDEyLDIwLjkyVjEySDVWNi4zTDEyLDMuMTlNMTIsMUwzLDVWMTFDMywxNi41NSA2Ljg0LDIxLjczIDEyLDIzQzE3LjE2LDIxLjczIDIxLDE2LjU1IDIxLDExVjVMMTIsMVoiIGZpbGw9IiNGRkZGRkYiLz48L3N2Zz4=" class="sidebar-item-icon"> 
+              <span>AntiAtl</span>
+          </a>
+        </div>
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>/captcha" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyLjYxMzMgOEMxMi42NCA4LjIyIDEyLjY2NjcgOC40NCAxMi42NjY3IDguNjY2NjdDMTIuNjY2NyAxMC4wNTMzIDEyLjEzMzMgMTEuMzEzMyAxMS4yNjY3IDEyLjI2QzExLjA5MzMgMTEuNzIgMTAuNiAxMS4zMzMzIDEwIDExLjMzMzNIOS4zMzMzM1Y5LjMzMzMzQzkuMzMzMzMgOC45NjY2NyA5LjAzMzMzIDguNjY2NjcgOC42NjY2NyA4LjY2NjY3SDQuNjY2NjdWNy4zMzMzM0g2QzYuMzY2NjcgNy4zMzMzMyA2LjY2NjY3IDcuMDMzMzMgNi42NjY2NyA2LjY2NjY3VjUuMzMzMzNIOEM4LjczMzMzIDUuMzMzMzMgOS4zMzMzMyA0LjczMzMzIDkuMzMzMzMgNFYyLjMwNjY3QzguNyAyLjEwNjY3IDguMDMzMzMgMiA3LjMzMzMzIDJDMy42NTMzMyAyIDAuNjY2NjY4IDQuOTg2NjcgMC42NjY2NjggOC42NjY2N0MwLjY2NjY2OCAxMi4zNDY3IDMuNjUzMzMgMTUuMzMzMyA3LjMzMzMzIDE1LjMzMzNDMTEuMDEzMyAxNS4zMzMzIDE0IDEyLjM0NjcgMTQgOC42NjY2N0MxNCA4LjQ0IDEzLjk4NjcgOC4yMiAxMy45NjY3IDhIMTIuNjEzM1pNNi42NjY2NyAxMy45NTMzQzQuMDMzMzMgMTMuNjI2NyAyIDExLjM4NjcgMiA4LjY2NjY3QzIgOC4yNTMzMyAyLjA1MzMzIDcuODYgMi4xNCA3LjQ3MzMzTDUuMzMzMzMgMTAuNjY2N1YxMS4zMzMzQzUuMzMzMzMgMTIuMDY2NyA1LjkzMzMzIDEyLjY2NjcgNi42NjY2NyAxMi42NjY3VjEzLjk1MzNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTQuNjY2NyAyLjY2NjVWMi4zMzMxN0MxNC42NjY3IDEuNDEzMTcgMTMuOTIgMC42NjY1MDQgMTMgMC42NjY1MDRDMTIuMDggMC42NjY1MDQgMTEuMzMzMyAxLjQxMzE3IDExLjMzMzMgMi4zMzMxN1YyLjY2NjVDMTAuOTY2NyAyLjY2NjUgMTAuNjY2NyAyLjk2NjUgMTAuNjY2NyAzLjMzMzE3VjUuOTk5ODRDMTAuNjY2NyA2LjM2NjUgMTAuOTY2NyA2LjY2NjUgMTEuMzMzMyA2LjY2NjVIMTQuNjY2N0MxNS4wMzMzIDYuNjY2NSAxNS4zMzMzIDYuMzY2NSAxNS4zMzMzIDUuOTk5ODRWMy4zMzMxN0MxNS4zMzMzIDIuOTY2NSAxNS4wMzMzIDIuNjY2NSAxNC42NjY3IDIuNjY2NVpNMTQgMi42NjY1SDEyVjIuMzMzMTdDMTIgMS43Nzk4NCAxMi40NDY3IDEuMzMzMTcgMTMgMS4zMzMxN0MxMy41NTMzIDEuMzMzMTcgMTQgMS43Nzk4NCAxNCAyLjMzMzE3VjIuNjY2NVoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=" class="sidebar-item-icon"> 
+              <span>Verification</span>
+          </a>
+        </div>
+        <div class="sidebar-item-row">
+          <a href="/dashboard/<%- guild.id %>/vanity" class="sidebar-item">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDE3LjI3TDE4LjE4LDIxTDE2LjU0LDEzLjk3TDIyLDkuMjRMMTQuODEsOC42MkwxMiwyTDkuMTksOC42MkwyLDkuMjRMNy40NSwxMy45N0w1LjgyLDIxTDEyLDE3LjI3WiIgZmlsbD0iI0ZGRkZGRiIvPjwvc3ZnPg==" class="sidebar-item-icon"> 
+              <span>Vanity Link</span>
+          </a> 
+        </div>
+    </div> 
+  </div>
+  <div class="dashboard-body">
+    <% if(!guild.me.hasPermission("ADMINISTRATOR")) { %>
+      <div class="dash-item dashboard-premium">
+        <div class="premium-text">
+          <span class="title">Missing Admin Permissions!</span><br>
+          <span class="subtitle">Bot can't work properly without admin permissions.</span>
+        </div>
+      </div>
+      <% } %>
+      <center><h1>🌐 AntiAlt</h1></center>
+      <!-- -->
+      <div class="dashboard-components">
+        <div class="dashboard-component">
+          <div class="dashboard-content"> 
+              <div class="dash-item">
+                <span class="title">Status</span> 
+                <div class="flex">
+                    <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="status" name="status">
+                      <option <% if(bot.settings.get(guild.id, "status") === "off") { %>selected<% } %> value="off">❌ Disabled</option>
+                      <option <% if(bot.settings.get(guild.id, "status") === "on") { %>selected<% } %> value="on">✅ Enabled</option>
+                    </select>
+                </div>
+              </div>
+              <div <%- style %> class="dash-item">
+                <span class="title">Required account days</span> 
+                <div class="flex">
+                  <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="days" name="days">
+                    <% [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 48, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100].forEach(number => { %>
+                      <option <% if(bot.settings.get(guild.id, "days") === number) { %>selected<% } %> value="<%- number %>"><%- number %> days</option>
+                    <% }) %>
+                  </select>
+                </div>
+              </div>
+              <div <%- style %> class="dash-item">
+                <span class="title">Logs Channel</span> 
+                <div class="flex">
+                  <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="logs" name="logs">
+                    <option style="color: rgb(255, 255, 255);" value="-">-</option>
+                      <% guild.channels.cache.forEach(role => { 
+                          if(role.type !== "text") return; %>
+                      <option <% if(bot.settings.get(guild.id, "logs") === role.id) { %>selected<% } %> value="<%- role.id %>"><%- role.name %></option><% }); %>
+                  </select>
+                </div>
+              </div>
+              <div <%- style %> class="dash-item">
+                <span class="title">Action</span> 
+                <div class="flex">
+                    <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="action" name="action">
+                      <option value="-">-</option>
+                      <option <% if(bot.settings.get(guild.id, "action") === "ban") { %>selected<% } %> value="ban">Ban</option>
+                      <option <% if(bot.settings.get(guild.id, "action") === "kick") { %>selected<% } %> value="kick">Kick</option>
+                      <option <% if(bot.settings.get(guild.id, "action") === "role") { %>selected<% } %> value="role">Give Alt role (Fill in below)</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div <%- style %>><p style="visibility: hidden;">?</p></div>
+        <div class="dashboard-components">
+          <div class="dashboard-component">
+            <div class="dashboard-content"> 
+                <div <%- style %> class="dash-item">
+                  <span class="title">Alt Role <span style="color: red;">*</span></span>
+                  <div class="flex">
+                    <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="arole" name="arole">
+                    <option style="color: rgb(255, 255, 255);" value="-">-</option>
+                      <% guild.roles.cache.forEach(role => { 
+                          if(role.name === "@everyone") return; 
+                          if(guild.me.roles.highest.position <= role.position) return; %>
+                      <option <% if(bot.settings.get(guild.id, "arole") === role.id) { %>selected<% } %> value="<%- role.id %>"><%- role.name %></option><% }); %>
+                    </select>
+                  </div>
+                  <div style="font-size: 10px;"><span style="color: red;">*</span> - Fill only if you choose "Give Alt Role" in action!</div>
+                </div>
+                <div <%- style %> class="dash-item">
+                  <span class="title">Verified Role</span>
+                  <div class="flex">
+                    <select style="width: 50%; background: #353535; padding:1rem" class="input-group" id="vrole" name="vrole">
+                    <option style="color: rgb(255, 255, 255);" value="-">-</option>
+                      <% guild.roles.cache.forEach(role => { 
+                          if(role.name === "@everyone") return; 
+                          if(guild.me.roles.highest.position <= role.position) return; %>
+                      <option <% if(bot.settings.get(guild.id, "vrole") === role.id) { %>selected<% } %> value="<%- role.id %>"><%- role.name %></option><% }); %>
+                    </select>
+                  </div>
+                  <div style="font-size: 10px;">This role will be given to verified members.</div>
+                </div>
+                </div>
+            </div>
+          </div>
+          <div class="one-button dash-item">
+            <div id="save" class="button">
+              Update
+            </div>
+          </div>
+      <!---->
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // don't try edit this script. 
+  // You can't change other server settings, because we're no idiots ;)
+  $(document).ready(() => {
+      $('#save').click(async () => {
+          const action = $("#action").val()
+          const arole = $('#arole').val()
+          const vrole = $("#vrole").val()
+          const status = $("#status").val()
+          const days = Number(document.getElementById("days").value)
+          const logs = $("#logs").val()
+
+          if(!action || !arole || !vrole || !status || !days || !logs) return $('.notifi').html(`
+          <div class="vue-notification-template vue-notification error">
+            <div class="notification-title">Error</div> 
+          </div>
+          `) && rm(100, true);
+          
+          try {
+              const res = await axios({
+                  url: "/dashboard/<%- guild.id %>/antialt",
+                  data: {
+                      action,
+                      arole,
+                      vrole,
+                      status,
+                      days,
+                      logs
+                  },
+                  method: "POST"
+              }).then(
+
+                $('.notifi').html(`
+          <div class="vue-notification-template vue-notification success">
+            <div class="notification-title">Success</div> 
+            <div class="notification-content">Settings saved!</div>
+          </div>
+          `) && rm(1000, true)
+
+          )
+          } catch(err) {
+            $('.notifi').html(`
+          <div class="vue-notification-template vue-notification error">
+            <div class="notification-title">Error</div> 
+            <div class="notification-content">${err.message}</div>
+          </div>
+          `) 
+          }
+      })
+  })
+  function rm(seconds, reload) {
+    setTimeout(() => {
+      if(reload) location.reload();
+      if(!reload) $('.notifi').html(` `) 
+    }, seconds)
+  }
+</script>
+
+<%- include('../blocks/footer') %>

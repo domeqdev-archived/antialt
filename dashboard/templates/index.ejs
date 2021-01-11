@@ -1,0 +1,93 @@
+<%- include('blocks/header', {bot, user, path}) %>
+<div id="main_container">
+    <section class="f-container f-center f-fullscreen f-topmost">
+      <div>
+        <h1 class="f-title"><%- bot.user.username %></h1> 
+        <p><%- bot.user.username %> is an innovative verified discord bot that will clean your server of alts and multiaccounts.</p>
+        <div class="f-links">
+          <a href="/invite" target="_blank" class="f-button">Invite <%- bot.user.username %></a> 
+          <% if(user) { %>
+          <a href="/dashboard" class="f-button">Dashboard</a>
+          <% } else { %>
+          <a href="/login" class="f-button">Login</a>
+          <% } %>
+        </div>
+      </div>
+    </section> 
+    <hr class="l-hr"> 
+    <section class="l-hero wow bounceIn" style="visibility: visible;">
+      <div class="g-container l-container g-even">
+        <div class="g-item g-col-5">
+          <div class="a-data">
+            <p class="a-label">Users</p> 
+            <p class="a-info"><%- bot.guilds.cache.reduce((a, g) => a + g.memberCount, 0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") %></p>
+          </div>
+        </div> 
+        <div class="g-item g-col-5">
+          <div class="a-data">
+            <div class="a-info">
+              <a target="_blank" href="https://top.gg/bot/715619574778822667/vote">
+                <img src="https://top.gg/api/widget/715619574778822667.svg" alt="AntiAlt" />
+              </a>
+            </div>
+          </div>
+        </div> 
+        <div class="g-item g-col-5">
+          <div class="a-data">
+            <p class="a-label">Servers</p> 
+            <p class="a-info"><%- bot.guilds.cache.size.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") %></p>
+          </div>
+        </div>
+      </div>
+      <center><p>Full stats: <code><%- bot.config.prefix %>stats</code></p></center>
+    </section> 
+    <hr class="l-hr"> 
+    <section class="l-hero">
+      <center><iframe src="https://invitewidget.ct8.pl/js?invite=8jQP52j" width="410" height="190" allowtransparency="true" frameborder="0"></iframe></center>
+    </section> 
+    <hr class="l-hr"> 
+    <section class="l-hero">
+      <div class="l-container g-container">
+        <div class="g-item g-col-15 g-center l-pad-dtp-10 l-mob-text-center">
+          <p class="t-title t-color-blue">Features</p> 
+          <span class="l-block t-size-16">
+            <img width="13" height="13" src="https://images.emojiterra.com/mozilla/512px/2705.png">
+            <b> Anti-Alt:</b> AntiAlt will kick, ban or give role to catched alt.
+          </span> 
+          <span class="l-block t-size-16">
+            <img width="13" height="13" src="https://images.emojiterra.com/mozilla/512px/2705.png">
+            <b> Captcha Verification:</b> When user join to server, AntiAlt send him link to site with captcha.
+          </span> 
+          <span class="l-block t-size-16">
+            <img width="13" height="13" src="https://images.emojiterra.com/mozilla/512px/2705.png">
+            <b> Whitelisting:</b> You can whitelist member, to bypass AntiAlt or Captcha Verification.
+          </span> 
+          <span class="l-block t-size-16">
+            <img width="13" height="13" src="https://images.emojiterra.com/mozilla/512px/2705.png">
+            <b> Fast Support:</b> If you need help, join our support server and ping us! 
+          </span> 
+          <span class="l-block t-size-16">
+            <img width="13" height="13" src="https://images.emojiterra.com/mozilla/512px/2705.png">
+            <b> Everything for free:</b> AntiAlt will be always free. You can donate us by clicking <a style="color: aqua" href="/donate" target="_blank">here</a>
+          </span>
+        </div>
+      </div>
+    </section> 
+    <hr class="l-hr">
+  </div>
+    <% if(err) { %>
+      <script>
+      $(document).ready(() => {
+        $('.notifi').html(`
+            <div class="vue-notification-template vue-notification error">
+              <div class="notification-title">Error</div> 
+              <div class="notification-content"><%- err %></div>
+            </div>
+        `)
+        setTimeout(() => {
+          location.replace('/');
+        }, 10000) 
+      })
+    </script>
+    <% } %>
+  <%- include('./blocks/footer') %>

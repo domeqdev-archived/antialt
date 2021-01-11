@@ -1,0 +1,60 @@
+<html lang="en">
+  <head>
+    <title>AntiAlt.xyz</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AntiAlt is an innovative discord bot that will clean your server of alts and multiaccounts.">
+    <meta property="og:title" content="AntiAlt.xyz">
+    <meta property="og:url" content="https://antialt.xyz/">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="AntiAlt is an innovative discord bot that will clean your server of alts and multiaccounts.">
+    <meta property="og:image" content="https://cdn.discordapp.com/avatars/718189569693974639/17df71c458cdccab2b89f24f03d67542.png?size=128">
+    <meta name="author" content="DomeQ.dev">
+    <meta name="theme-color" content="#0070FA">
+    <link rel="icon" type="image/x-icon" href="<%- bot.user.displayAvatarURL({ dynamic: true }) %>">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Source+Sans+Pro:300,400">
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/public/custom.css">
+    <script data-ad-client="ca-pub-7576926722331812" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script>
+    <meta name="turbolinks-cache-control" content="no-cache">
+  </head>
+  <body id="body">
+    <div id="__nuxt">
+      <div id="__layout">
+        <div class="hero is-full-height background relative">
+          <div class="hero-head">
+            <div class="navbar is-0-9">
+              <div class="container no-init-margin">
+                <div class="navbar-brand is-1-7">
+                  <a href="/" class="navbar-item active">
+                    <img src="<%- bot.user.displayAvatarURL({ dynamic: true }) %>" class="rounded-circle navbar-img">
+                  </a> 
+                  <div class="navbar-burger">
+                    <span></span> 
+                    <span></span> 
+                    <span></span>
+                  </div>
+                </div> 
+                <div class="navbar-menu">
+                  <div class="navbar-left">
+                    <a href="/invite" class="navbar-item show">Invite</a>
+                    <a href="/support" target="_blank" class="navbar-item show">Support Server</a>
+                    <% if(user) { %>
+                    <a href="/dashboard" class="navbar-item show <% if(path.includes('dashboard')) { %> active <% } %>">Dashboard</a>
+                  </div> 
+                  <div class="navbar-right">
+                        <a class="navbar-item" href="/logout"><img class="rounded-circle" width="25" height="25" src="<%= `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}` %>">&nbsp;&nbsp;<%= user.username %>#<%= user.discriminator %></a>
+                      <% } else { %>
+                      </div> 
+                      <div class="navbar-right">
+                        <a class="navbar-item" href="/login"><img class="rounded-circle" width="25" height="25" src="https://discord.com/assets/f78426a064bc9dd24847519259bc42af.png">&nbsp;&nbsp;Login</a>                       
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <div class="hero-body flex">
