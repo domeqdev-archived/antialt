@@ -1,3 +1,10 @@
+//
+// ❗❗❗ This command will soon stop working!
+// We're using third-party server to host emotes,  
+// thanks to this we need to pay for it, 
+// we'll no longer pay for it.
+// ❗❗❗ This command will soon stop working!
+//
 const { MessageEmbed, splitMessage } = require('discord.js');
 const config = require('../../config.js');
 const Emoji = require('../../functions.js');
