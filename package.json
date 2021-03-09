@@ -2,7 +2,6 @@
   "name": "antialt-master_chef",
   "version": "Android 69 - PeePooPoo Check",
   "dependencies": {
-    "axios": "^0.20.0",
     "better-sqlite3": "^7.1.0",
     "body-parser": "^1.19.0",
     "common-tags": "^1.8.0",
@@ -20,7 +19,6 @@
     "https": "^1.0.0",
     "jimp": "^0.16.1",
     "level-session-store": "^2.2.0",
-    "marked": "^1.1.1",
     "moment": "^2.29.0",
     "ms": "^2.1.2",
     "os": "^0.1.1",
