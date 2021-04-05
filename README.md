@@ -10,4 +10,4 @@ With this bot, you can catch every alt!
 
 
 ### ❌ This repository is no longer supported but it works idk why 🤔
-### ▶ AntiAlt has been moved to [Slash Bot](https://discord4.fun/)
+### ▶ AntiAlt was moved to [Slash Bot](https://discord4.fun/)
