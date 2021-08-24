@@ -4,7 +4,7 @@
   const DBL = require('dblapi.js');
  
   const client = new Discord.Client();
-  client.dbl = new DBL("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcxNTYxOTU3NDc3ODgyMjY2NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNjA0NDczMTQ4fQ.UIenLAvEThXMSsf19J-iHKGzIDqvEo7Or82rIrpW4vM", { webhookPort: 5000, webhookAuth: 'AbuTjwERLhLCUumyE9T9n2ta9fXZ7AY8' });
+  client.dbl = new DBL("", { webhookPort: 5000, webhookAuth: '' });
   client.function = require("./functions.js")
   client.config = require("./config.js")
   client.settings = new Enmap({ name: "settings", cloneLevel: "deep", fetchAll: false, autoFetch: true });
